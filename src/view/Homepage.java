@@ -34,7 +34,7 @@ public class Homepage {
         JFrame frame = new JFrame();
         frame.setTitle("Homepage");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 400);
+        frame.setSize(400, 600);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
 
@@ -46,12 +46,26 @@ public class Homepage {
         JPanel profilePanel = new JPanel();
         profilePanel.setLayout(new GridBagLayout());
 
+        gbc.gridx = 0;
         gbc.gridy = 0;
         JLabel nameLabel = new JLabel("Nama pengguna: " + user.getName());
-        nameLabel.setFont(nameLabel.getFont().deriveFont(Font.BOLD, 14f));
         profilePanel.add(nameLabel, gbc);
 
         gbc.gridy = 1;
+        JLabel email = new JLabel("Email: " + user.getEmail());
+        profilePanel.add(email, gbc);
+
+        gbc.gridy = 2;
+        JLabel gender = new JLabel("Gender: " + user.getGenderAsString());
+        profilePanel.add(gender, gbc);
+
+        gbc.gridy = 3;
+        JLabel birthday = new JLabel("Birthday: " + user.getBirthday());
+        profilePanel.add(birthday, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.gridheight = 4;
         gbc.anchor = GridBagConstraints.CENTER;
         String projectDirectory = System.getProperty("user.dir");
         String fotoPath = projectDirectory + "/images/" + user.getPhoto();
@@ -84,6 +98,7 @@ public class Homepage {
 
         int y = 0;
         int c = 1;
+        gbc.gridheight = 1;
         for (Todo todo : todos) {
             y++;
             gbc.gridy = y;
